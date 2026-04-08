@@ -91,6 +91,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: top center;
       opacity: 0.9;
     }
 
@@ -334,7 +335,10 @@
     }
 
     @media (max-width: 560px) {
-      .hero { min-height: 75vh }
+      .hero { min-height: 100vh }
+      .hero-bg img { object-fit: contain; object-position: top center }
+      .hero-content { bottom: 6vh }
+      .hero-title { font-size: 2.2rem }
       .top-bar { padding: 20px 20px }
 
       .app-card {
@@ -383,7 +387,10 @@
   <!-- ─── Hero ─── -->
   <section class="hero">
     <div class="hero-bg">
-      <img src="images/background.png" alt="" loading="eager">
+      <picture>
+        <source media="(max-width: 560px)" srcset="images/background-mobile.png">
+        <img src="images/background.png" alt="" loading="eager">
+      </picture>
     </div>
     <div class="hero-content">
       <h1 class="hero-title fade-up">Vlepa Apps</h1>
