@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.vlepa.linesofaction",
+      "sha256_cert_fingerprints": [
+        "CD:A8:67:F2:45:4F:52:31:7E:F0:E6:9E:B8:1D:95:04:FE:29:B2:9D:F9:23:1B:F9:04:1B:C9:8B:0D:E4:FC:18"
+      ]
+    }
+  }
+]
