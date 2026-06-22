@@ -45,26 +45,34 @@
     <div id="codeBlock">
       <div class="code-label">Game code</div>
       <div class="code" id="code">––––</div>
-      <p>Open the app and tap <b>Join by Code</b>, then enter this code.</p>
+      <a class="btn btn-primary" id="openapp" href="#">Open in app</a>
+      <p>Have the app? Tap <b>Open in app</b>. Otherwise install it, then enter this code in <b>Join by Code</b>.</p>
     </div>
 
-    <a class="btn btn-primary" id="appstore"
+    <a class="btn btn-secondary" id="appstore"
        href="https://apps.apple.com/app/id6761025215">Get it on the App Store</a>
     <a class="btn btn-secondary" id="playstore"
        href="https://play.google.com/store/apps/details?id=app.vlepa.linesofaction">Get it on Google Play</a>
 
-    <div class="hint">Already have the app? Tapping the invite link opens it automatically.</div>
+    <div class="hint">Already have the app? Tapping the invite link usually opens it automatically. If it didn't (e.g. opened inside an email app), use the button above.</div>
   </div>
 
   <script>
-    // Code can arrive as /play/4729 (pretty link) or /play/?c=4729 (query).
+    // Code can arrive as /play/loa/4729 (pretty link), the legacy /play/4729,
+    // or /play/?c=4729 (query, used after the 404.html redirect).
     (function () {
       var path = location.pathname.replace(/\/+$/, ""); // strip trailing slash
-      var m = path.match(/\/play\/([A-Za-z0-9]+)/);
+      var m = path.match(/\/play\/(?:loa\/)?([A-Za-z0-9]+)$/);
       var code = m ? m[1] : new URLSearchParams(location.search).get("c");
       var el = document.getElementById("code");
+      var openBtn = document.getElementById("openapp");
       if (code) {
         el.textContent = code;
+        // Custom-scheme deep link — works from in-app browsers (Gmail, etc.)
+        // where Universal/App Links don't fire. The OS hands "loa://" to the
+        // installed app; if it's not installed, nothing happens (the store
+        // buttons below cover that case).
+        openBtn.setAttribute("href", "loa://play/" + encodeURIComponent(code));
       } else {
         document.getElementById("codeBlock").style.display = "none";
       }

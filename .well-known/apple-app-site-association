@@ -4,7 +4,7 @@
       {
         "appIDs": ["6U5D22BW22.app.vlepa.linesofaction"],
         "components": [
-          { "/": "/play/*", "comment": "Online multiplayer friend-invite links" }
+          { "/": "/play/loa/*", "comment": "Lines of Action online friend-invite links" }
         ]
       }
     ]

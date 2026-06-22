@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Lines of Action</title>
   <script>
-    // GitHub Pages has no per-path files for /play/<code>, so pretty invite
-    // links (https://vlepa.app/play/4729) land here when the app isn't
-    // installed. Redirect them to the real fallback page, carrying the code.
+    // GitHub Pages has no per-path files for /play/loa/<code>, so pretty invite
+    // links (https://vlepa.app/play/loa/4729) land here when the app isn't
+    // installed. Pull the code (always the last path segment — also matches the
+    // legacy /play/<code> shape) and redirect to the real fallback page.
     // Everything else falls back to the home page.
     (function () {
-      var m = location.pathname.match(/\/play\/([A-Za-z0-9]+)/);
+      var m = location.pathname.match(/\/play\/(?:loa\/)?([A-Za-z0-9]+)\/?$/);
       if (m) {
         location.replace("/play/?c=" + encodeURIComponent(m[1]));
       } else {
